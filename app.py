@@ -14,14 +14,12 @@ import re, unicodedata
 from datetime import datetime
 import os
 
-# ==========================
-# LOAD MODELS (LOCAL PATHS)
-# ==========================
-BASE_DIR = r"C:\Users\kinsh\OneDrive\Desktop\Heart Pre Final"
+BASE_DIR = os.path.dirname(os.path.abspath("C:\Users\kinsh\OneDrive\Desktop\Heart Pre Final"))
 
 scaler = joblib.load(os.path.join(BASE_DIR, "heart_scaler.pkl"))
 xgb_model = joblib.load(os.path.join(BASE_DIR, "heart_xgb_tuned.pkl"))
 att_model = tf.keras.models.load_model(os.path.join(BASE_DIR, "heart_attention_regressor.h5"), compile=False)
+
 
 # ==========================
 # PAGE CONFIG
@@ -345,3 +343,4 @@ if st.session_state.chat_history:
 if st.button("🧹 Clear Chat"):
     st.session_state.chat_history = []
     st.success("Chat cleared! Ready for a new session.")
+
